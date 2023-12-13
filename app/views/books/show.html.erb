@@ -1,2 +1,10 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div>
+  <%= image_tag @book.get_image %>
+  <p>Title：<%= @book.title %></p>
+  <p>Opinion：<%= @book.body %></p>
+  <p>Posted User Image：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>User：<%= @book.user.name %></p>
+  <p>datetime：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "Delete", post_image_path(@book), method: :delete %>
+  <% end %></div>

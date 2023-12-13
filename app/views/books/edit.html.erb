@@ -1,0 +1,9 @@
+<h1>Editing Book</h1>
+<%= form_with model: @book, url: update_book_path(@book.id) do |f| %>
+
+  <h4>Title<br>
+  <%= f.text_field :title %></h4>
+  <h4>Opinion<br>
+  <%= f.text_area :body %></h4>
+  <%= f.submit 'Update Book' %>
+<% end %>
