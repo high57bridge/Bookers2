@@ -1,0 +1,36 @@
+<h3>Bookers</h3>
+
+<h1>User info</h1>
+
+<h1>Book detail</h1>
+
+<% @books.each do |book| %>
+  <div>
+    <%= image_tag book.get_image %>
+    <p><%= image_tag 'no_image.jpg' %></p>
+    <p><%= book.title %></p>
+    <p><%= book.body %></p>
+    <p><%= book.user.name %></p>
+  </div>
+<% end %>
+
+<%= form_with model: @book do |f| %>
+  <h4>Image<br>
+  <%= f.file_field :image, accept: "image/*" %></h4>
+
+ <h1>New Book</h1>
+ <% if @book.errors.any? %>
+   <%= @book.errors.count %> errors prohibited this obj from being saved:
+   <ul>
+     <% @book.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+     <% end %>
+   </ul>
+ <% end %>
+ 
+  <h4>Title<br>
+  <%= f.text_field :title %></h4>
+  <h4>Opinion<br>
+  <%= f.text_area :body %></h4>
+  <%= f.submit 'Create Book' %>
+<% end %>

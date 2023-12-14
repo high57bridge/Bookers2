@@ -3,6 +3,10 @@
   <%= image_tag @user.get_profile_image(100,100) %>
 </div>
 
+<% if @book.user == current_user %>
+    <%= link_to "Delete", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %>
+  <% end %></div>
+
 <% @books.each do |book| %>
 <div>
   <%= link_to book_path(book.id) do %>
