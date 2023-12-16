@@ -1,24 +1,26 @@
 <h3>Bookers</h3>
 
-<h1>User info</h1>
-
-<h1>Book detail</h1>
-
+<h1>Books</h1>
 <% @books.each do |book| %>
   <div>
-    <%= image_tag book.get_image %>
     <p><%= image_tag 'no_image.jpg' %></p>
     <p><%= book.title %></p>
     <p><%= book.body %></p>
     <p><%= book.user.name %></p>
+    <%= link_to "Edit", edit_book_path(book.id) %>
+    <%= link_to "Delete", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
   </div>
 <% end %>
 
 <%= form_with model: @book do |f| %>
-  <h4>Image<br>
-  <%= f.file_field :image, accept: "image/*" %></h4>
-
- <h1>New Book</h1>
+ <h2>User info</h2>
+ <%= f.file_field :image, accept: "image/*" %>
+     <h6>name
+     <%= f.text_field :name %></h6>
+     <h6>introduction
+     <%= f.text_field :introduction %></h6>
+ 
+ <h2>New Book</h2>
  <% if @book.errors.any? %>
    <%= @book.errors.count %> errors prohibited this obj from being saved:
    <ul>

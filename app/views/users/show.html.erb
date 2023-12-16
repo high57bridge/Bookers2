@@ -1,11 +1,8 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <p><%= link_to "Editing Profile", user_path %></p>
 </div>
-
-<% if @book.user == current_user %>
-    <%= link_to "Delete", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %>
-  <% end %></div>
 
 <% @books.each do |book| %>
 <div>
@@ -13,8 +10,12 @@
     <%= image_tag book.get_image %>
   <% end %>
   <p>Posted User Image: <%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>name: <%= book.name %></p>
-  <p>introduction: <%= book.introduction %></p>
+  <p>name: <%= book.title %></p>
+  <p>introduction: <%= book.body %></p>
   <p>User info: <%= book.user.name %></p>
 </div>
 <% end %>
+
+<!--<% if @book.user == current_user %>-->
+<!--    <%= link_to "Delete", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %>-->
+<!--  <% end %></div>-->

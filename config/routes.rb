@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :books, only: [:new, :create, :index, :show, :edit, :destroy]
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit, :update]
   
   patch 'books/:id' => 'books#update', as: 'update_book'
   get "/homes/about" => "homes#about", as: "about"
