@@ -14,10 +14,10 @@
   <header>
     <% if user_signed_in? %>
       <li>
-        <%= link_to '投稿フォーム', new_book_path %>
+        <%= link_to 'Home', books_path %>
       </li>
       <li>
-        <%= link_to 'My page', user_path(current_user.id) %>
+        <%= link_to 'Users', user_path(current_user.id) %>
       </li>
       <li>
         <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -31,6 +31,11 @@
       </li>
     <% end %>
   </header>
+  <div>
+    <% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
+  </div>
     <%= yield %>
   </body>
 </html>

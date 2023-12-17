@@ -1,8 +1,8 @@
-
 <h3>Bookers</h3>
- <div class="row">
+
+<div class="row">
   <div class="col-md-3">
-<h2 class="px-3">User info</h2>
+ <h2 class="px-3">User info</h2>
  <table>
    <thead>
      <tr>
@@ -23,27 +23,34 @@
       <th colspan="2"></th>
     </tr>
     </thead>
-</table>
+  </div>
 </div>
-
+ 
 <div class="col-8.offset-md-1">
+ <h2>Users</h2>
  <table>
-   <h2>Book detail</h2>
     <thead>
     <tr>
-      <td><%= image_tag 'no_image.jpg' %></td>
-    <td class="px-3"><%= @book.title %></td>
-    <td class="px-3"><%= @book.body %></td>
-      <td class="px-3"><%= link_to "Edit", edit_book_path(@book.id) %></td>
-      <td class="px-3"><%= link_to "Destroy", books_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
-    </thead>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
     </tr>
+    </thead>
+<tbody>
+<% @users.each do |user| %>
+  <div>
+    <td><%= image_tag 'no_image.jpg' %></td>
+    <td><%= user.title %></td>
+    <td><%= user.body %></td>
+    <td><%= link_to "Show", user_path(user.id) %></td>
+  </tr>
+<% end %>
+</tbody>
 </table>
-  </div>
 </div>
 
  <h2>New book</h2>
-<% if @book.errors.any? %>
+ <% if @book.errors.any? %>
    <%= @book.errors.count %> errors prohibited this obj from being saved:
    <ul>
      <% @book.errors.full_messages.each do |message| %>
@@ -51,7 +58,7 @@
      <% end %>
    </ul>
  <% end %>
-
+ 
  <%= form_with model: @book do |f| %>
   <h4>Title<br>
   <%= f.text_field :title %></h4>
@@ -59,6 +66,7 @@
   <%= f.text_area :body %></h4>
   <%= f.submit 'Create Book' %>
 <% end %>
+
 
 
 <footer class="footer row pt-3 justify-content-center">CopyRight Infratop.inc</footer>
