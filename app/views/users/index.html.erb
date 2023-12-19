@@ -1,32 +1,52 @@
-<h3>Bookers</h3>
+<div class="container px-5 px-sm-0">
+    <div class="">
+        <div class="row">
+            <div class="col-md-3">
+      <h2 class="px-3">User info</h2>
+    <table>
+      <thead>
+        <tr>
+        <td><%= image_tag 'no_image.jpg' %></td>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+        <th class="px-3">name</th>
+        <td><%= @user.name %></td>
+        <th colspan="2"></th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+        <th class="px-3">introduction</th>
+        <td><%= @user.introduction %></td>
+        <th colspan="2"></th>
+        </tr>
+      </thead>
+    </table>
+    
+<a class="btn btn-outline-secondary btn-block edit_user_id"></a>
+<h2>New book</h2>
+ <% if @book.errors.any? %>
+   <%= @book.errors.count %> errors prohibited this obj from being saved:
+   <ul>
+     <% @book.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+     <% end %>
+   </ul>
+ <% end %>
 
-<div class="row">
-  <div class="col-md-3">
- <h2 class="px-3">User info</h2>
- <table>
-   <thead>
-     <tr>
-   <td><%= image_tag 'no_image.jpg' %></td>
-   </tr>
-   </thead>
-    <thead>
-    <tr>
-      <th class="px-3">name</th>
-      <td><%= @user.name %></td>
-      <th colspan="2"></th>
-    </tr>
-    </thead>
-    <thead>
-    <tr>
-      <th class="px-3">introduction</th>
-      <td><%= @user.introduction %></td>
-      <th colspan="2"></th>
-    </tr>
-    </thead>
-  </div>
-</div>
- 
-<div class="col-8.offset-md-1">
+ <%= form_with model: @book do |f| %>
+  <h4>Title<br>
+  <%= f.text_field :title %></h4>
+  <h4>Opinion<br>
+  <%= f.text_area :body %></h4>
+  <%= f.submit 'Create Book' %>
+ <% end %>
+ </div>
+  
+<div class="offset-md-1">
+<div class="col-md-8">
  <h2>Users</h2>
  <table>
     <thead>
@@ -37,36 +57,18 @@
     </tr>
     </thead>
 <tbody>
-<% @users.each do |user| %>
-  <div>
+  <tr>
     <td><%= image_tag 'no_image.jpg' %></td>
-    <td><%= user.title %></td>
-    <td><%= user.body %></td>
-    <td><%= link_to "Show", user_path(user.id) %></td>
+    <td><%= @user.name %></td>
+    <td><%= @user.introduction %></td>
+    <td><%= link_to "Show", user_path(@user.id) %></td>
   </tr>
-<% end %>
 </tbody>
 </table>
 </div>
+</div>
+</div>
+</div>
 
- <h2>New book</h2>
- <% if @book.errors.any? %>
-   <%= @book.errors.count %> errors prohibited this obj from being saved:
-   <ul>
-     <% @book.errors.full_messages.each do |message| %>
-     <li><%= message %></li>
-     <% end %>
-   </ul>
- <% end %>
+
  
- <%= form_with model: @book do |f| %>
-  <h4>Title<br>
-  <%= f.text_field :title %></h4>
-  <h4>Opinion<br>
-  <%= f.text_area :body %></h4>
-  <%= f.submit 'Create Book' %>
-<% end %>
-
-
-
-<footer class="footer row pt-3 justify-content-center">CopyRight Infratop.inc</footer>
