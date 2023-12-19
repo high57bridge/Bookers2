@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
  
  def index 
-  # @books = Book.find(params[:id])
    @book = Book.new
    @user = current_user
+  # @books = Book.find(params[:id])
  end
  
 def create

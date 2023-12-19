@@ -1,14 +1,19 @@
 class BooksController < ApplicationController
 
-  def new
-    @book = Book.new
+before_action :ensure_current_user, {only:[:edit, :update]}
+
+  def ensure_current_user
+    @book = Book.find(params[:id])
+    if @book.user_id != current_user.id
+      redirect_to books\path
+    end
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      flash[:notice]= "Book was successfully created"
+      flash[:notice]= "You have created the book successfully"
       redirect_to book_path(@book.id)
     else
       flash.now[:alert]= "Book was posting failed"
@@ -38,8 +43,8 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     @book.update(book_params)
-    if @book.save
-      flash[:notice] = "Book was successfully updated"
+    if @book.update
+      flash[:notice] = "You have updated the book successfully"
       redirect_to book_path(@book.id)
     else
       flash.now[:alert] = "Book was updating failed"
