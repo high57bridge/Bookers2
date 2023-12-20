@@ -14,14 +14,12 @@ def create
       flash[:notice]= "Book was successfully created"
       redirect_to user_path(@user.id)
     else
-      flash.now[:alert]= "Book was posting failed"
       @user = current_user
       render :index
     end
 end
  
   def show
-    @user_show = current_user
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.find(params[:id])
@@ -39,7 +37,6 @@ end
       flash[:notice] = "You have updated user successfully"
       redirect_to user_path(@user.id)
     else
-      flash.now[:alert] = "Book was updating failed"
       render :edit
     end
   end

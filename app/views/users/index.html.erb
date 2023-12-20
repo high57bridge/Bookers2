@@ -1,4 +1,12 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
+  <% if @book.errors.any? %>
+  <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+      <% end %>
+    </ul>
+      <% end %>
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
@@ -7,8 +15,6 @@
             <tr>
             <td><%= image_tag 'no_image.jpg' %></td>
             </tr>
-          </thead>
-          <thead>
             <tr>
             <th>name</th>
             <th><%= @user.name %></th>
@@ -21,30 +27,21 @@
             </tr>
           </thead>
         </table>
-        
-  <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
+
+  <%= link_to edit_user_path(@user.id), class: "btn btn-light btn-outline-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
   <% end %>
-  
-    <h2>New book</h2>
-    <% if @book.errors.any? %>
-    <%= @book.errors.count %> errors prohibited this obj from being saved:
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-    <% end %>
 
+    <h2>New book</h2>
     <%= form_with model: @book do |f| %>
       <p>Title<br>
     <%= f.text_field :title %></p>
       <p>Opinion<br>
     <%= f.text_area :body %></p>
-    <%= f.submit 'Create Book' %>
+    <%= f.submit 'Create Book', class: 'btn btn-success' %>
     <% end %>
   </div>
-    
+
 <div class="col-md-8 offset-md-1">
     <h2>Users</h2>
       <table class="table table-hover table-inverse">

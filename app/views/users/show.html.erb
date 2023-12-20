@@ -1,4 +1,13 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
+    <% if @book.errors.any? %>
+    <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+      <% end %>
+    </ul>
+      <% end %>
+
   <div class="row">
     <div class="col-md-3">
         <h2>User info</h2>
@@ -27,21 +36,12 @@
 </table>
 
  <h2>New book</h2>
-    <% if @book.errors.any? %>
-      <%= @book.errors.count %> errors prohibited this obj from being saved:
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-    <% end %>
- 
  <%= form_with model: @book_new do |f| %>
   <p>Title<br>
   <%= f.text_field :title %></p>
   <p>Opinion<br>
   <%= f.text_area :body %></p>
-  <%= f.submit 'Create Book' %>
+  <%= f.submit 'Create Book', class: 'btn btn-success' %>
 <% end %>
 </div>
 
