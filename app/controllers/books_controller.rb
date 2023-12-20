@@ -27,13 +27,13 @@ before_action :ensure_current_user, {only:[:edit, :update]}
     @books = Book.all
     @book = Book.new
     @user = current_user
-    @users
   end
 
   def show
     @books = Book.find(params[:id])
     @book = Book.find(params[:id])
     @user = current_user
+    @book_new = Book.new
   end
 
   def edit
@@ -45,7 +45,7 @@ before_action :ensure_current_user, {only:[:edit, :update]}
     @book = Book.find(params[:id])
     @book.update(book_params)
     if @book.update
-      flash[:notice] = "You have updated the book successfully"
+      flash[:notice] = "You have updated book successfully"
       redirect_to book_path(@book.id)
     else
       flash.now[:alert] = "Book was updating failed"

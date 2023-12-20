@@ -12,67 +12,70 @@
 
   <body>
     <header class="shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <span class="navbar-brand">Bookers</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+           <%= link_to root_path,class: "navbar-brand" do %>
+              Bookers <% end %> 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
             
-    <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to books_path, class: 'nav-link text-light' do %>
-        <i class="fa fa-house"></i> Home
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
-        <i class="fa fa-users"></i> Users
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to books_path, class: 'nav-link text-light' do %>
-      <i class="fa fa-book-open"></i> Books
-      <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
-      <i class="fa fa-right-from-bracket"></i> Logout
-      <% end %>
-      </li>
-    <% else %>
-    <li class="nav-item">
-        <%= link_to users_path, class: 'nav-link text-light' do %>
-        <i class="fa fa-house"></i> Home
-        <% end %>
-        <li class="nav-item">
-        <%= link_to about_path, class: 'nav-link text-light' do %>
-        <i class="fa fa-link"></i> About
-        <% end %>
-      <li class="nav-item">
-        <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-      <i class="fa fa-user-plus"></i> Sign up
-      <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to new_user_session_path,class: 'nav-link text-light' do %>
-      <i class="fa fa-right-to-bracket"></i> Login
-      <% end %>
-      </li>
-    <% end %>
-    </ul>
-    </div>
-    </div>
-    </nav>
-  </header>
+      <% if user_signed_in? %>
+          <%= link_to books_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-home"></i> Home
+          <% end %>
+        
+          <%= link_to users_path(current_user.id), class: 'nav-link text-light' do %>
+        <i class="fas fa-users"></i> Users
+          <% end %>
+
+          <%= link_to books_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-book-open"></i> Books
+          <% end %>
+
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+        <i class="fas fa-sign-out-alt"></i> Logout
+          <% end %>
+       
+          <% else %>
+          <%= link_to root_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-home"></i> Home
+          <% end %>
+       
+          <%= link_to about_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-link"></i> About
+          <% end %>
+        
+          <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-user-plus"></i> Sign up
+          <% end %>
+  
+          <%= link_to new_user_session_path,class: 'nav-link text-light' do %>
+        <i class="fas fa-sign-in-alt"></i> Login
+          <% end %>
+
+          <% end %>
+                </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
   <div>
-    <% flash.each do |message_type, message| %>
-      <div class="flash-message <%= message_type %>"><%= message %></div>
-    <% end %>
-  </div>
-    <%= yield %>
-    <footer class="footer row pt-3 justify-content-center">CopyRight Infratop.inc</footer>
+    
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+    </div>
+  <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">CopyRight Infratop.inc
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

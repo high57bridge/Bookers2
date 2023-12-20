@@ -1,53 +1,64 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
     <div class="col-md-3">
- <h2>User info</h2>
- <% if @user.errors.any? %>
-   <%= @user.errors.count %> errors prohibited this obj from being saved:
-   <ul>
-     <% @user.errors.full_messages.each do |message| %>
-     <li><%= message %></li>
-     <% end %>
-   </ul>
- <% end %>
- <p><%= image_tag 'no_image.jpg' %></p>
-    <p><%= @user.name %></p>
-    <p><%= @user.introduction %></p>
+        <h2>User info</h2>
+        <table class="table">
+          <thead>
+            <%= image_tag 'no_image.jpg' %>
+            <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+            <th colspan="2"></th>
+            </tr>
+            <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+            <th colspan="2"></th>
+            </tr>
+          </thead>
+        </table>
+
+<table class="table">
+  <div class="row">
+    <%= link_to edit_user_path(@user.id), class: "btn btn-light btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+</table>
 
  <h2>New book</h2>
-<% if @book.errors.any? %>
-   <%= @book.errors.count %> errors prohibited this obj from being saved:
-   <ul>
-     <% @book.errors.full_messages.each do |message| %>
-     <li><%= message %></li>
-     <% end %>
-   </ul>
- <% end %>
+    <% if @book.errors.any? %>
+      <%= @book.errors.count %> errors prohibited this obj from being saved:
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+    <% end %>
  
- <%= form_with model: @book do |f| %>
-  <h4>Title<br>
-  <%= f.text_field :title %></h4>
-  <h4>Opinion<br>
-  <%= f.text_area :body %></h4>
+ <%= form_with model: @book_new do |f| %>
+  <p>Title<br>
+  <%= f.text_field :title %></p>
+  <p>Opinion<br>
+  <%= f.text_area :body %></p>
   <%= f.submit 'Create Book' %>
 <% end %>
 </div>
 
-<div class="offset-md-1">
-<div class="col-md-8">
- <h2>Books</h2>
- <table>
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Opinion</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
- </table>
-</div>
-</div>
-</div>
+<div class="col-md-8 offset-md-1">
+     <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+            <thead>
+                <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+         </table>
+        </div>
+    </div>
 </div>
 
 

@@ -1,5 +1,8 @@
-<h2>Sign up</h2>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+      
+      <h2>Sign up</h2>
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
@@ -27,8 +30,12 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= link_to user_path(@user_show.id), class: "btn btn-sm btn-success" do %>
+    Sign up <% end %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

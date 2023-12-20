@@ -5,7 +5,6 @@ class UsersController < ApplicationController
  def index 
    @book = Book.new
    @user = current_user
-  # @books = Book.find(params[:id])
  end
  
 def create
@@ -22,9 +21,11 @@ def create
 end
  
   def show
+    @user_show = current_user
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.find(params[:id])
+    @book_new = Book.new
   end
 
   def edit
@@ -35,7 +36,7 @@ end
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
-      flash[:notice] = "Book was successfully updated"
+      flash[:notice] = "You have updated user successfully"
       redirect_to user_path(@user.id)
     else
       flash.now[:alert] = "Book was updating failed"
