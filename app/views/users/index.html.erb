@@ -1,6 +1,8 @@
 <div class="container px-5 px-sm-0">
     <div class="row">
       <div class="col-md-3">
+  <% if current_user %>
+  <div class="profile-container">
       <h2 class="px-3">User info</h2>
         <table>
           <thead>
@@ -11,22 +13,23 @@
           <thead>
             <tr>
             <th class="px-3">name</th>
-            <td><%= @user.name %></td>
+            <td><%= current_user.name %></td>
             <th colspan="2"></th>
             </tr>
           </thead>
           <thead>
             <tr>
             <th class="px-3">introduction</th>
-            <td><%= @user.introduction %></td>
+            <td><%= current_user.introduction %></td>
             <th colspan="2"></th>
             </tr>
           </thead>
         </table>
+        <% end %>
         
 <li class="nav-item">
   <a class="btn btn-outline-secondary btn-block edit_user_id">
-    <%= link_to users_edit_path, class: 'nav-link text-light' do %>
+    <%= link_to edit_user_path, class: 'nav-link text-light' do %>
       <i class="fa fa-user_gear"></i></a>
     <% end %></li>
 <h2 class="mt-3">New book</h2>

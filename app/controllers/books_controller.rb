@@ -5,7 +5,7 @@ before_action :ensure_current_user, {only:[:edit, :update]}
   def ensure_current_user
     @book = Book.find(params[:id])
     if @book.user_id != current_user.id
-      redirect_to books\path
+      redirect_to books_path
     end
   end
 
@@ -27,6 +27,7 @@ before_action :ensure_current_user, {only:[:edit, :update]}
     @books = Book.all
     @book = Book.new
     @user = current_user
+    @users
   end
 
   def show
