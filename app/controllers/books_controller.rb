@@ -29,7 +29,6 @@ before_action :ensure_current_user, {only:[:edit, :update]}
   end
 
   def show
-    @books = Book.find(params[:id])
     @book = Book.find(params[:id])
     @user = current_user
     @book_new = Book.new
