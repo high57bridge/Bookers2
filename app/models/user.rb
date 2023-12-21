@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  validates :name, length: {minimum:2, maximum:20}
+  validates :name, length: {minimum:2, maximum:20}, uniqueness: true
   
   validates :introduction, length: {maximum:50}
 
@@ -17,6 +17,6 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+      profile_image.variant(resize_to_limit: [width, height]).processed
   end
 end

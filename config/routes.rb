@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'home#top'
   devise_for :users
 
-  resources :books, only: [:create, :index, :show, :edit, :back, :destroy]
+  resources :books, only: [:create, :index, :show, :edit, :update, :destroy]
   resources :users, only: [:create, :show, :edit, :update, :index]
 
   # patch 'books/:id' => 'books#update', as: 'update_book'

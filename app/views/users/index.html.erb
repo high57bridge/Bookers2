@@ -11,9 +11,9 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
+      <%= image_tag 'no_image.jpg' %>
         <table class="table">
-          <thead>
-            <%= image_tag 'no_image.jpg' %>
+          <tbody>
             <tr>
             <th>name</th>
             <th><%= @user.name %></th>
@@ -24,14 +24,18 @@
             <th><% @user.introduction %></th>
             <th colspan="2"></th>
             </tr>
-          </thead>
+          </tbody>
         </table>
 
-  <%= link_to edit_user_path(@user.id), class: "btn btn-light btn-outline-secondary btn-block" do %>
-    <i class="fas fa-user-cog"></i>
-  <% end %>
+ <table class="table">
+  <div class="row">
+    <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+</table>
 
-    <h2>New book</h2>
+  <h2>New book</h2>
     <%= form_with model: @book do |f| %>
       <p>Title<br>
     <%= f.text_field :title %></p>
@@ -53,11 +57,15 @@
       </thead>
       <tbody>
         <tr>
-        <td><%= image_tag 'no_image.jpg' %></td>
-        <td><%= @user.name %></td>
-        <td><%= @user.introduction %></td>
-        <td><%= link_to "Show", user_path(@user.id) %></td>
+            <% @users.each do |user| %>
+        <td>
+          <%= image_tag 'no_image.jpg' %>
+          </td>
+        <td><%= user.name %></td>
+        <td><%= user.introduction %></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
         </tr>
+        <% end %>
       </tbody>
       </table>
       </div>
